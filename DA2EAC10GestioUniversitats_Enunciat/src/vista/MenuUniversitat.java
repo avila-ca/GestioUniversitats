@@ -47,7 +47,24 @@ public class MenuUniversitat extends JFrame {
          * d'aquesta classe.
          * 
          */
+        this.setTitle("Menú Universitats");
 
+        this.setLayout(new GridLayout(3, 1));
+
+        String[] etiquetes = {
+                "0. Sortir",
+                "1. Alta Universitat",
+                "2. Seleccionar Universitat",
+                "3. Llistar Universitats",
+                "4. Carregar Universitat",
+                "5. Desar Universitat"
+        };
+
+        for (int i = 0; i < menuButtons.length; i++) {
+            menuButtons[i] = new JButton(etiquetes[i]);
+            this.getContentPane().add(menuButtons[i]);
+        }
+        showFinestra();
     }
 
     private void showFinestra() {

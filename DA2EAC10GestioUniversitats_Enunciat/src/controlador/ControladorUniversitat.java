@@ -62,7 +62,7 @@ public class ControladorUniversitat implements ActionListener {
          * cada botó del formulari de la universitat.
          * 
          */
-
+        
     }
 
     private void afegirListenersLlista() {
