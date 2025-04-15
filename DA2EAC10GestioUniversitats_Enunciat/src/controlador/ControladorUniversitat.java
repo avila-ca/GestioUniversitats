@@ -31,7 +31,9 @@ public class ControladorUniversitat implements ActionListener {
          * Afegiu els escoltadors als botons del menú cridant al mètode afegirListenersMenu().
          * 
          */
+        menuUniversitat = new MenuUniversitat();
 
+        afegirListenersMenu();
     }
 
     // El controlador com a listener dels controls de les finestres que gestionen les universitats
@@ -45,7 +47,10 @@ public class ControladorUniversitat implements ActionListener {
          * cada botó del menú d'universitats.
          * 
          */
-
+        JButton[] menuButtons = menuUniversitat.getMenuButtons();
+        for (JButton button : menuButtons) {
+            button.addActionListener(this);
+        }
     }
 
     private void afegirListenersForm() {
