@@ -48,7 +48,29 @@ public class UniversitatForm extends JFrame {
          * d'aquesta classe.
          * 
          */
+        this.setTitle("Formulari Universitat");
 
+        this.setLayout(new GridLayout(5, 1));
+
+        lNomUniversitat = new JLabel("Nom de la Universitat:");
+        this.getContentPane().add(lNomUniversitat);
+
+        tNomUniversitat = new JTextField();
+        this.getContentPane().add(tNomUniversitat);
+
+        lUbicacioSeu = new JLabel("Ubicació de la Seu:");
+        this.getContentPane().add(lUbicacioSeu);
+
+        tUbicacioSeu = new JTextField();
+        this.getContentPane().add(tUbicacioSeu);
+
+        desar = new JButton("Desar");
+        this.getContentPane().add(desar);
+
+        sortir = new JButton("Sortir");
+        this.getContentPane().add(sortir);
+
+        showFinestra();
     }
 
     private void showFinestra() {
