@@ -27,8 +27,9 @@ public class ControladorUniversitat implements ActionListener {
         /*
          * TODO
          * 
-         * Inicialitzeu l'atribut menuUniversitat (per mostrar el menú d'universitats). 
-         * Afegiu els escoltadors als botons del menú cridant al mètode afegirListenersMenu().
+         * Inicialitzeu l'atribut menuUniversitat (per mostrar el menú d'universitats).
+         * Afegiu els escoltadors als botons del menú cridant al mètode
+         * afegirListenersMenu().
          * 
          */
         menuUniversitat = new MenuUniversitat();
@@ -36,7 +37,8 @@ public class ControladorUniversitat implements ActionListener {
         afegirListenersMenu();
     }
 
-    // El controlador com a listener dels controls de les finestres que gestionen les universitats
+    // El controlador com a listener dels controls de les finestres que gestionen
+    // les universitats
 
     private void afegirListenersMenu() {
 
@@ -48,8 +50,8 @@ public class ControladorUniversitat implements ActionListener {
          * 
          */
         JButton[] menuButtons = menuUniversitat.getMenuButtons();
-        for (JButton button : menuButtons) {
-            button.addActionListener(this);
+        for (int i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].addActionListener(this);
         }
     }
 
@@ -62,7 +64,10 @@ public class ControladorUniversitat implements ActionListener {
          * cada botó del formulari de la universitat.
          * 
          */
-        
+        JButton[] menuButtons = menuUniversitat.getMenuButtons();
+        for (int i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].addActionListener(this);
+        }
     }
 
     private void afegirListenersLlista() {
@@ -73,7 +78,10 @@ public class ControladorUniversitat implements ActionListener {
          * Afegiu aquest mateix objecte (ControladorUniversitat) com a listener, al
          * botó sortir de la llista d'universitats.
          */
-
+        JButton[] menuButtons = menuUniversitat.getMenuButtons();
+        for (int i = 0; i < menuButtons.length; i++) {
+            menuButtons[i].addActionListener(this);
+        }
     }
 
     @Override
@@ -83,16 +91,16 @@ public class ControladorUniversitat implements ActionListener {
          * TODO
          * 
          * Seleccioneu l'acció a realitzar cridant el mètode seleccionarOpcio i
-         * utilitzant la propietat actionCommand dels botons, que per defecte 
-         * és igual al text dels botons. El mètode getActionCommand de l'esdeveniment 
+         * utilitzant la propietat actionCommand dels botons, que per defecte
+         * és igual al text dels botons. El mètode getActionCommand de l'esdeveniment
          * retorna la propietat actionCommand de l'objecte que ha produït l'acció.
-         * Noteu que els botons amb el mateix text (Sortir) han d'establir la 
-         * propietat actionCommand amb el mètode setActionCommand a un valor diferent 
-         * per distingir-se: "SortirForm" i "SortirLlista" com es pot veure en el 
+         * Noteu que els botons amb el mateix text (Sortir) han d'establir la
+         * propietat actionCommand amb el mètode setActionCommand a un valor diferent
+         * per distingir-se: "SortirForm" i "SortirLlista" com es pot veure en el
          * mètode seleccionarOpcio.
          * 
          */
-
+        seleccionarOpcio(e.getActionCommand());
     }
 
     private void seleccionarOpcio(String opcio) {
@@ -101,111 +109,133 @@ public class ControladorUniversitat implements ActionListener {
 
         switch (opcio) {
 
-        case "0. Sortir":
-            /*
-            * TODO Tancar menu d'universitats i tornar al menú principal
-            */
-            break;
+            case "0. Sortir":
+                /*
+                 * TODO Tancar menu d'universitats i tornar al menú principal
+                 */
+                menuUniversitat.setVisible(false);
+                ControladorPrincipal.getMenuPrincipal().setVisible(true);
+                break;
 
-        case "1. Alta Universitat":
-            /*
-             * TODO Es comprova si no s'ha arribat al màxim d'universitats.
-             * En cas afirmatiu: es mostra un formulari de la classe UniversitatForm i s'afegeixen 
-             * els listeners a cada botó del formulari de la universitat.
-             * En cas negatiu (s'ha arribat al màxim): es mostra el següent missatge mitjançant
-             * JOptionPane.showMessageDialog: "Màxim nombre d'universitats assolit."
-             */
-
-            break;	
-
-        case "2. Seleccionar Universitat":
-            menuUniversitat.setVisible(true);
-            if (ControladorPrincipal.getUniversitats()[0] != null) {
-                seleccionarUniversitat();
-            } else {
-                JOptionPane.showMessageDialog(menuUniversitat, "Abans s'ha de crear al menys una universitat");
-            }
-            break;
-
-        case "3. Llistar Universitats":
-            if (ControladorPrincipal.getUniversitats()[0] != null) {
-                universitatLlista = new UniversitatLlista();
-                afegirListenersLlista();
-            } else {
-                menuUniversitat.setVisible(true);
-                JOptionPane.showMessageDialog(menuUniversitat, "Abans s'ha de crear al menys una universitat");
-            }
-            break;
-
-        case "4. Carregar Universitat":
-            menuUniversitat.setVisible(true);
-
-            gestor = new GestorPersistencia();
-
-            Universitat universitat;
-
-            String fitxer = JOptionPane.showInputDialog(null, "Nom de la universitat que es vol carregar?", "Carregar Universitat", JOptionPane.PLAIN_MESSAGE); 
-
-            try {
-                gestor.carregarUniversitat(ControladorPrincipal.getMETODESPERSISTENCIA()[0], fitxer);
-
-                universitat = ((GestorXML) gestor.getGestor()).getUniversitat();
-
-                int pos = comprovarUniversitat(universitat.getNomUniversitat());
-
-                if (pos >= 0) {
-                    Object[] options = { "OK", "Cancel·lar" };
-                    int i = JOptionPane.showOptionDialog(null, "Premeu OK per substituir.",
-                                    "La universitat ja existeix", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
-                                    null, options, options[0]);
-
-                    if (i == 0) {
-                        ControladorPrincipal.getUniversitats()[pos] = universitat;
-                    }
-
+            case "1. Alta Universitat":
+                /*
+                 * TODO Es comprova si no s'ha arribat al màxim d'universitats.
+                 * En cas afirmatiu: es mostra un formulari de la classe UniversitatForm i
+                 * s'afegeixen
+                 * els listeners a cada botó del formulari de la universitat.
+                 * En cas negatiu (s'ha arribat al màxim): es mostra el següent missatge
+                 * mitjançant
+                 * JOptionPane.showMessageDialog: "Màxim nombre d'universitats assolit."
+                 */
+                if (ControladorPrincipal.getpUniversitats() < ControladorPrincipal.getUniversitats().length) {
+                    universitatForm = new UniversitatForm();
+                    universitatForm.setVisible(true);
+                    afegirListenersForm(); // Añadir listeners a los botones del formulario
                 } else {
-                    ControladorPrincipal.getUniversitats()[ControladorPrincipal.getpUniversitats()] = universitat;
-                    ControladorPrincipal.setpUniversitats();
-                    JOptionPane.showMessageDialog(menuUniversitat, "Universitat afegida correctament");
+                    JOptionPane.showMessageDialog(menuUniversitat, "Màxim nombre d'universitats assolit.");
                 }
-            } catch (GestorUniversitatsException e) {
-                JOptionPane.showMessageDialog(menuUniversitat, e.getMessage());
-            }
-            break;
+                break;
 
-        case "5. Desar Universitat":
-            /*
-             * TODO Es comprova si s'ha seleccionat la universitat: - Si no s'ha
-             * seleccionat es mostra un missatges d'error (JOptionPane.showMessageDialog) -
-             * Si s'ha seleccionat, es desa la universitat cridant a
-             * desarUniversitat del gestor de persistència. El nom del fitxer ha de ser
-             * "universitat".
-             * 
-             * NOTA: Si es produeix alguna excepció de tipus GestorUniversitatsException,
-             * s'ha de capturar i mostrar el missatge que retorna l'excepció (getMessage())
-             * mitjançant JOptionPane.showMessageDialog.
-             */
+            case "2. Seleccionar Universitat":
+                menuUniversitat.setVisible(true);
+                if (ControladorPrincipal.getUniversitats()[0] != null) {
+                    seleccionarUniversitat();
+                } else {
+                    JOptionPane.showMessageDialog(menuUniversitat, "Abans s'ha de crear al menys una universitat");
+                }
+                break;
 
-            break;
+            case "3. Llistar Universitats":
+                if (ControladorPrincipal.getUniversitats()[0] != null) {
+                    universitatLlista = new UniversitatLlista();
+                    afegirListenersLlista();
+                } else {
+                    menuUniversitat.setVisible(true);
+                    JOptionPane.showMessageDialog(menuUniversitat, "Abans s'ha de crear al menys una universitat");
+                }
+                break;
 
-        case "SortirForm":
-            menuUniversitat.setVisible(true);
-            universitatForm.dispose();
-            break;
+            case "4. Carregar Universitat":
+                menuUniversitat.setVisible(true);
 
-        case "SortirLlista":
-            menuUniversitat.setVisible(true);
-            universitatLlista.dispose();
-            break;
+                gestor = new GestorPersistencia();
 
-        case "Desar":
-            universitat = new Universitat(universitatForm.gettNomUniversitat().getText(),
-                            universitatForm.gettUbicacioSeu().getText());
-            ControladorPrincipal.getUniversitats()[ControladorPrincipal.getpUniversitats()] = universitat;
-            ControladorPrincipal.setpUniversitats();
-            ControladorPrincipal.setUniversitatActual(universitat);
-            System.out.println("Desar");
-            break;
+                Universitat universitat;
+
+                String fitxer = JOptionPane.showInputDialog(null, "Nom de la universitat que es vol carregar?",
+                        "Carregar Universitat", JOptionPane.PLAIN_MESSAGE);
+
+                try {
+                    gestor.carregarUniversitat(ControladorPrincipal.getMETODESPERSISTENCIA()[0], fitxer);
+
+                    universitat = ((GestorXML) gestor.getGestor()).getUniversitat();
+
+                    int pos = comprovarUniversitat(universitat.getNomUniversitat());
+
+                    if (pos >= 0) {
+                        Object[] options = { "OK", "Cancel·lar" };
+                        int i = JOptionPane.showOptionDialog(null, "Premeu OK per substituir.",
+                                "La universitat ja existeix", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                                null, options, options[0]);
+
+                        if (i == 0) {
+                            ControladorPrincipal.getUniversitats()[pos] = universitat;
+                        }
+
+                    } else {
+                        ControladorPrincipal.getUniversitats()[ControladorPrincipal.getpUniversitats()] = universitat;
+                        ControladorPrincipal.setpUniversitats();
+                        JOptionPane.showMessageDialog(menuUniversitat, "Universitat afegida correctament");
+                    }
+                } catch (GestorUniversitatsException e) {
+                    JOptionPane.showMessageDialog(menuUniversitat, e.getMessage());
+                }
+                break;
+
+            case "5. Desar Universitat":
+                /*
+                 * TODO Es comprova si s'ha seleccionat la universitat: - Si no s'ha
+                 * seleccionat es mostra un missatges d'error (JOptionPane.showMessageDialog) -
+                 * Si s'ha seleccionat, es desa la universitat cridant a
+                 * desarUniversitat del gestor de persistència. El nom del fitxer ha de ser
+                 * "universitat".
+                 * 
+                 * NOTA: Si es produeix alguna excepció de tipus GestorUniversitatsException,
+                 * s'ha de capturar i mostrar el missatge que retorna l'excepció (getMessage())
+                 * mitjançant JOptionPane.showMessageDialog.
+                 */
+                if (ControladorPrincipal.getUniversitatActual() == null) {
+                    JOptionPane.showMessageDialog(menuUniversitat, "No s'ha seleccionat cap universitat");
+                } else {
+                    gestor = new GestorPersistencia();
+                    try {
+                        gestor.desarUniversitat(ControladorPrincipal.getMETODESPERSISTENCIA()[0],
+                                "universitat", ControladorPrincipal.getUniversitatActual());
+                        JOptionPane.showMessageDialog(menuUniversitat, "Universitat desada correctament");
+                    } catch (GestorUniversitatsException e) {
+                        JOptionPane.showMessageDialog(menuUniversitat, e.getMessage());
+                    }
+                }
+                break;
+
+            case "SortirForm":
+                menuUniversitat.setVisible(true);
+                universitatForm.dispose();
+                break;
+
+            case "SortirLlista":
+                menuUniversitat.setVisible(true);
+                universitatLlista.dispose();
+                break;
+
+            case "Desar":
+                universitat = new Universitat(universitatForm.gettNomUniversitat().getText(),
+                        universitatForm.gettUbicacioSeu().getText());
+                ControladorPrincipal.getUniversitats()[ControladorPrincipal.getpUniversitats()] = universitat;
+                ControladorPrincipal.setpUniversitats();
+                ControladorPrincipal.setUniversitatActual(universitat);
+                System.out.println("Desar");
+                break;
         }
 
     }
@@ -225,7 +255,7 @@ public class ControladorUniversitat implements ActionListener {
 
         int messageType = JOptionPane.QUESTION_MESSAGE;
         int codi = JOptionPane.showOptionDialog(null, "Selecciona una universitat",
-                        "Selecció de la universitat", 0, messageType, null, noms, "A");
+                "Selecció de la universitat", 0, messageType, null, noms, "A");
 
         if (codi != JOptionPane.CLOSED_OPTION) {
             ControladorPrincipal.setUniversitatActual(ControladorPrincipal.getUniversitats()[codi]);
@@ -240,8 +270,8 @@ public class ControladorUniversitat implements ActionListener {
         for (int i = 0; i < ControladorPrincipal.getUniversitats().length && !trobat; i++) {
             if (ControladorPrincipal.getUniversitats()[i] != null) {
                 if (ControladorPrincipal.getUniversitats()[i].getNomUniversitat().equals(nom)) {
-                        pos = i;
-                        trobat = true;
+                    pos = i;
+                    trobat = true;
                 }
             }
         }
