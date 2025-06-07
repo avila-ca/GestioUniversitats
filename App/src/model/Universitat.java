@@ -1,5 +1,5 @@
 /*
- * Classe que defineix una universitat, que es defineix pel seu nom,
+* Classe que defineix una universitat, que es defineix pel seu nom,
  * la seva ubicació i un array de campus.
  */
 
@@ -197,4 +197,3 @@ public class Universitat implements UnitatUniversitat {
         }
     }
 }
-

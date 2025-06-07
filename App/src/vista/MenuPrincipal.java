@@ -35,7 +35,7 @@ public class MenuPrincipal extends JFrame {
          * 
          * "1. Menú Universitats"
          * 
-         * "2. Menú Aules"
+         * "2. Menú Campus"
          * 
          * - Heu afegir els botons al panell per defecte del JFrame
          * (this.getContentPane()).
@@ -46,22 +46,25 @@ public class MenuPrincipal extends JFrame {
          * d'aquesta classe.
          * 
          */
+
+        // Definició del títol de la finestra del menú.		
         this.setTitle("Menú Principal");
 
-        this.setLayout(new GridLayout(3, 1));
+        // Definició del layout
+        this.setLayout(new GridLayout(0, 1));
 
-        String[] etiquetes = {
-                "0. Sortir",
-                "1. Menú Universitats",
-                "2. Menú Aules"
-        };
+        // Creació dels botons a la llista.
+        menuButtons[0] = new JButton("0. Sortir");
+        menuButtons[1] = new JButton("1. Menú Universitats");
+        menuButtons[2] = new JButton("2. Menú Campus");
 
-        for (int i = 0; i < menuButtons.length; i++) {
-            menuButtons[i] = new JButton(etiquetes[i]);
-            this.getContentPane().add(menuButtons[i]);
+        // Addició dels botons al panell per defecte de la finestra.
+        for (JButton boto : menuButtons) {
+            this.getContentPane().add(boto);
         }
 
         showFinestra();
+
     }
 
     private void showFinestra() {
@@ -77,17 +80,5 @@ public class MenuPrincipal extends JFrame {
 
     public void setMenuButtons(JButton[] menuButtons) {
         this.menuButtons = menuButtons;
-    }
-
-    public JButton getBtnSortir() {
-        return menuButtons[0];
-    }
-
-    public JButton getBtnUniversitats() {
-        return menuButtons[1];
-    }
-
-    public JButton getBtnAules() {
-        return menuButtons[2];
     }
 }

@@ -16,12 +16,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import exceptions.GestorUniversitatsException;
-import interfaces.ProveedorPersistencia;
 import model.Universitat;
 import model.Campus;
 import model.AulaEstandard;
 import model.AulaInformatica;
 import model.Laboratori;
+import interfaces.ProveedorPersistencia;
 
 /**
  *
@@ -37,6 +37,11 @@ public class GestorXML implements ProveedorPersistencia {
 
     public Universitat getUniversitat() {
         return universitat;
+    }
+    
+    @Override
+    public void setUniversitat(Universitat Universitat) {
+        this.universitat = Universitat;
     }
 
     @Override

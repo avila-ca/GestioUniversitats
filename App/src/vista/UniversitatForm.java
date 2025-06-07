@@ -48,29 +48,34 @@ public class UniversitatForm extends JFrame {
          * d'aquesta classe.
          * 
          */
+
+        // Definició del títol de la finestra del menú.	
         this.setTitle("Formulari Universitat");
 
-        this.setLayout(new GridLayout(5, 1));
+        // Definició del layout
+        this.setLayout(new GridLayout(0, 1));
 
-        lNomUniversitat = new JLabel("Nom de la Universitat:");
-        this.getContentPane().add(lNomUniversitat);
+        // Creació dels controls del formulari
+        lNomUniversitat = new JLabel("NomUniversitat");
+        tNomUniversitat = new JTextField(20);
+        lUbicacioSeu = new JLabel("Ubicació");
+        tUbicacioSeu = new JTextField(20);
 
-        tNomUniversitat = new JTextField();
-        this.getContentPane().add(tNomUniversitat);
-
-        lUbicacioSeu = new JLabel("Ubicació de la Seu:");
-        this.getContentPane().add(lUbicacioSeu);
-
-        tUbicacioSeu = new JTextField();
-        this.getContentPane().add(tUbicacioSeu);
-
+        // Creació dels botons del formulari
         desar = new JButton("Desar");
-        this.getContentPane().add(desar);
-
         sortir = new JButton("Sortir");
+        sortir.setActionCommand("SortirForm");
+
+        // Addició del tot el formulari al panell de la finestra
+        this.getContentPane().add(lNomUniversitat);
+        this.getContentPane().add(tNomUniversitat);
+        this.getContentPane().add(lUbicacioSeu);
+        this.getContentPane().add(tUbicacioSeu);
+        this.getContentPane().add(desar);
         this.getContentPane().add(sortir);
 
         showFinestra();
+
     }
 
     private void showFinestra() {

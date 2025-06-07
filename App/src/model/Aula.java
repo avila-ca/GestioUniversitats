@@ -1,5 +1,6 @@
 package model;
 
+import static interfaces.UnitatUniversitat.DADES;
 import interfaces.UnitatUniversitat;
 
 /**
@@ -71,3 +72,4 @@ public abstract class Aula implements UnitatUniversitat {
     public abstract double costManteniment();
     
 }
+

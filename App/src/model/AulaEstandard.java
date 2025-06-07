@@ -1,5 +1,5 @@
 /*
- * Classe que defineix una aula estàndard d'un campus.
+* Classe que defineix una aula estàndard d'un campus.
  * Es defineixen pel seu codi, número d'aula i el seu cost per dia
  */
 package model;
@@ -16,7 +16,7 @@ public class AulaEstandard extends Aula {
     public AulaEstandard(String codi, int numeroAula, double costPerDia) {
         super(codi, numeroAula, costPerDia);
     }
-   
+  
     public static AulaEstandard addAulaEstandard() {
         
         System.out.println("\nCodi de l'Aula Estandàrd:");

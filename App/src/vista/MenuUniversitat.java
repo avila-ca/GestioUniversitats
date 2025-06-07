@@ -47,23 +47,26 @@ public class MenuUniversitat extends JFrame {
          * d'aquesta classe.
          * 
          */
+
+        // Definició del títol de la finestra del menú.	
         this.setTitle("Menú Universitats");
 
-        this.setLayout(new GridLayout(3, 1));
+        // Definició del layout
+        this.setLayout(new GridLayout(0, 1));
 
-        String[] etiquetes = {
-                "0. Sortir",
-                "1. Alta Universitat",
-                "2. Seleccionar Universitat",
-                "3. Llistar Universitats",
-                "4. Carregar Universitat",
-                "5. Desar Universitat"
-        };
+        // Creació dels botons a la llista
+        menuButtons[0] = new JButton("0. Sortir");
+        menuButtons[1] = new JButton("1. Alta Universitat");
+        menuButtons[2] = new JButton("2. Seleccionar Universitat");
+        menuButtons[3] = new JButton("3. Llistar Universitats");
+        menuButtons[4] = new JButton("4. Carregar Universitat");
+        menuButtons[5] = new JButton("5. Desar Universitat");
 
-        for (int i = 0; i < menuButtons.length; i++) {
-            menuButtons[i] = new JButton(etiquetes[i]);
-            this.getContentPane().add(menuButtons[i]);
+        // Addició dels botons a la finestra
+        for (JButton boto : menuButtons) {
+            this.getContentPane().add(boto);
         }
+
         showFinestra();
     }
 

@@ -19,7 +19,7 @@ public class GestorUniversitatsException extends Exception {
                 missatge = "Ja no hi caben més Universitats";
                 break;
             case "3":
-                missatge = "La universitat ja existeix";
+                missatge = "La Universitat ja existeix";
                 break;
             case "GestorXML.model":
                 missatge = "No s'ha pogut crear el model XML per desar la Universitat";
